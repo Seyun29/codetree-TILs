@@ -43,8 +43,10 @@ def move(r,c,d, prev, cont):
     else: 
         if prev==3:
             # -서쪽
+            # print("-서 *", cont)
             return (r, c+cont, (d+cont)%4)
         elif prev==1:
+            # print("-동 *", cont)
             return (r, c-cont, (d-cont)%4)
         return (r,c,d)
 
@@ -56,8 +58,8 @@ def adjacent(r,c, idx):
         ret_list.append(mapp[r-1][c]-1)
     elif inRange(r, c-1) and mapp[r][c-1] != idx and mapp[r][c-1] != 0:
         ret_list.append(mapp[r][c-1]-1)
-    elif inRange(r, c+1) and mapp[r][c-1] != idx and mapp[r][c-1] != 0:
-        ret_list.append(mapp[r][c-1]-1)
+    elif inRange(r, c+1) and mapp[r][c+1] != idx and mapp[r][c+1] != 0:
+        ret_list.append(mapp[r][c+1]-1)
     return ret_list
     
     
@@ -85,13 +87,19 @@ for (idx, golem) in enumerate(golem_list):
         golem_list[idx][2] = maxx
 
         total+=maxx
-        # print('골렘 입력 :', o_r, o_c, maxx, adj_list, d_x, d_y)
+        # print('인덱스, 골렘 입력 :', idx+1, o_c, o_d)
+        # print('인접리스트 :', adj_list)
+        # print('최대값 :', maxx)
+        # print('d :', d_x, d_y)
+        mapp[d_x][d_y] = 9
+        # print("mapp -----")
+        # for rows in mapp:
+        #     print(rows)
+        # print("----\n")
+        mapp[d_x][d_y] = idx+1
     else:
         # print('초기화')
         mapp = [[0 for k in range(col+1)] for i in range(row+1)]
 
-    # print("mapp -----")
-    # for rows in mapp:
-    #     print(rows)
-    # print("----")
+ 
 print(total)
