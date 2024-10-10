@@ -11,11 +11,11 @@ def dfs(idx, end_time, cost):
     global total_cost
     # print(idx, end_time, cost)
     if idx >= n-1:
-        if end_time <= idx:
+        if end_time <= idx and idx+jobs[idx][0] <= n:
             cost += jobs[idx][1]
         total_cost = max(total_cost, cost)
         return
-    if end_time <= idx:
+    if end_time <= idx and idx+jobs[idx][0] <= n:
         dfs(idx+1, idx+jobs[idx][0], cost+jobs[idx][1])
     dfs(idx+1, end_time, cost)
 
