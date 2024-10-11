@@ -16,15 +16,18 @@ def calculate(source): #dijkstra!!!
     cost_table = [-1 for i in range(len(graph))]
     visited = [False for i in range(len(graph))]
     hq = list() #최소힙
-    heapq.heappush(hq, source) 
+    heapq.heappush(hq, (0,source)) 
     cost_table[source] = 0
     while(len(hq)>0):
-        node = heapq.heappop(hq)
+        node = heapq.heappop(hq)[1]
         visited[node] = True
         for adj_node, adj_cost in graph[node]:
             if not visited[adj_node]:
+                # if (source==0 and adj_node==6):
+                #     print('node :', node)
+                #     print(cost_table[node], adj_cost, cost_table[adj_node])
                 cost_table[adj_node] = min(cost_table[node]+adj_cost, cost_table[adj_node] if cost_table[adj_node] >= 0 else cost_table[node]+adj_cost+10)
-                heapq.heappush(hq, adj_node)
+                heapq.heappush(hq, (adj_cost, adj_node))
     return cost_table
 
 
@@ -71,6 +74,12 @@ def update(order):
 def stage(order):
     if order[0]==100:
         build(order)
+        # for i in graph:
+        #     print(i)
+        # print(cost_matrix[0])
+        #4 10 6 -> revenue 10 cost 16
+        #9 4 3 -> revenue 4 cost 4
+        #10 7 1 -> 
     elif order[0]==200:
         generate(order)
     elif order[0]==300:
