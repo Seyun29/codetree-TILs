@@ -27,7 +27,7 @@ def calculate(source): #dijkstra!!!
                 #     print('node :', node)
                 #     print(cost_table[node], adj_cost, cost_table[adj_node])
                 cost_table[adj_node] = min(cost_table[node]+adj_cost, cost_table[adj_node] if cost_table[adj_node] >= 0 else cost_table[node]+adj_cost+10)
-                heapq.heappush(hq, (adj_cost, adj_node))
+                heapq.heappush(hq, (cost_table[adj_node], adj_node))
     return cost_table
 
 
