@@ -2,4 +2,4 @@ a=input()
 if(a=='z'):
     print('a')
 else:
-    print(chr(ord(input())+1))
+    print(chr(ord(a)+1))
