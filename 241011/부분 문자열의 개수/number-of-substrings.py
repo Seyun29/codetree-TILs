@@ -1,2 +1,8 @@
+import re
+
 a,b=input(),input()
-print(a.count(b))
+cnt=0
+for idx, w in enumerate(a):
+    if a[idx:idx+len(b)]==b:
+        cnt+=1
+print(cnt)
