@@ -23,13 +23,9 @@ def calculate(source): #dijkstra!!!
         visited[node] = True
         for adj_node, adj_cost in graph[node]:
             if not visited[adj_node]:
-                # if (source==0 and adj_node==6):
-                #     print('node :', node)
-                #     print(cost_table[node], adj_cost, cost_table[adj_node])
                 cost_table[adj_node] = min(cost_table[node]+adj_cost, cost_table[adj_node] if cost_table[adj_node] >= 0 else cost_table[node]+adj_cost+10)
                 heapq.heappush(hq, (cost_table[adj_node], adj_node))
     return cost_table
-
 
 def build(order):
     global graph, cost_matrix
@@ -58,8 +54,7 @@ def sell(order):
     global graph, trip_dict, cur_source, cost_matrix
     cost_table = cost_matrix[cur_source]
     #trip_dict -> ['id' : [revenue, dest]]
-    trips = trip_dict.keys()
-    trips = list(filter(lambda x: 0<=cost_table[trip_dict[x][1]]<=trip_dict[x][0], trips))
+    trips = list(filter(lambda x: 0<=cost_table[trip_dict[x][1]]<=trip_dict[x][0], trip_dict.keys()))
     trips.sort(key=lambda x: (-(trip_dict[x][0]-cost_table[trip_dict[x][1]]), x))
     if len(trips) > 0:
         print(trips[0])
@@ -74,12 +69,6 @@ def update(order):
 def stage(order):
     if order[0]==100:
         build(order)
-        # for i in graph:
-        #     print(i)
-        # print(cost_matrix[0])
-        #4 10 6 -> revenue 10 cost 16
-        #9 4 3 -> revenue 4 cost 4
-        #10 7 1 -> 
     elif order[0]==200:
         generate(order)
     elif order[0]==300:
