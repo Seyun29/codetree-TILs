@@ -1,5 +1,5 @@
 a=input()
-if(a=='z')
+if(a=='z'):
     print('a')
 else:
     print(chr(ord(input())+1))
