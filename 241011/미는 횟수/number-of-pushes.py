@@ -8,5 +8,6 @@ while cnt<len(a):
     s=s[1:]+s[0]
     if (s==b):
         ans=cnt
+        break
 
 print(ans)
